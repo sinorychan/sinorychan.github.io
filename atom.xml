@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sinorychan.github.io</id>
     <title>sinorychan</title>
-    <updated>2020-05-17T02:49:44.044Z</updated>
+    <updated>2020-05-17T07:36:21.230Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sinorychan.github.io"/>
     <link rel="self" href="https://sinorychan.github.io/atom.xml"/>
@@ -11,15 +11,34 @@
     <icon>https://sinorychan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, sinorychan</rights>
     <entry>
+        <title type="html"><![CDATA[ Run custom shell script '[CP]Copy Pods Resources' 错误 ]]></title>
+        <id>https://sinorychan.github.io/post/ios-bian-yi-cuo-wu-zheng-li/</id>
+        <link href="https://sinorychan.github.io/post/ios-bian-yi-cuo-wu-zheng-li/">
+        </link>
+        <updated>2020-05-17T07:09:55.000Z</updated>
+        <content type="html"><![CDATA[<p>#资源权限问题<br>
+<img src="https://sinorychan.github.io/post-images/1589699944210.png" alt="" loading="lazy"></p>
+<p>解决方法<br>
+进入项目下面的路径下<br>
+<img src="https://sinorychan.github.io/post-images/1589699960183.png" alt="" loading="lazy"><br>
+终端执行。 chomd a+x 将上面路径拖进来 按enter键执行命令，再次运行项目就可以跑起来了</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[检查iOS项目中是否还有使用UIWebView]]></title>
         <id>https://sinorychan.github.io/post/ni-hao-a/</id>
         <link href="https://sinorychan.github.io/post/ni-hao-a/">
         </link>
         <updated>2020-05-16T10:41:21.000Z</updated>
+        <summary type="html"><![CDATA[<p>主要方便查找静态库和动态库中使用到UIWebView的地方。</p>
+]]></summary>
         <content type="html"><![CDATA[<p>主要方便查找静态库和动态库中使用到UIWebView的地方。</p>
+<!-- more -->
 <p>方法一：<br>
-cd 项目根目录<br>
-find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs grep -s UIWebView</p>
+cd 项目根目录</p>
+<pre><code>find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs grep -s UIWebView
+</code></pre>
+<!-- more -->
 <p>方法二：<br>
 复制代码生成文件check.py。<br>
 将文件放置项目根目录，cd到该文件目录，执行python check.py。<br>

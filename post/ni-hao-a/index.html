@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://sinorychan.github.io/favicon.ico?v=1589683764588">
+<link rel="shortcut icon" href="https://sinorychan.github.io/favicon.ico?v=1589700979659">
 <link rel="stylesheet" href="https://sinorychan.github.io/styles/main.css">
 
 
@@ -19,9 +19,10 @@
 
 
     <meta name="description" content="主要方便查找静态库和动态库中使用到UIWebView的地方。
+
 方法一：
 cd 项目根目录
-find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs g..." />
+find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs ..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -31,7 +32,7 @@ find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs g..." 
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://sinorychan.github.io">
-        <img src="https://sinorychan.github.io/images/avatar.png?v=1589683764588" class="site-logo">
+        <img src="https://sinorychan.github.io/images/avatar.png?v=1589700979659" class="site-logo">
         <h1 class="site-title">sinorychan</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -98,9 +99,12 @@ find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs g..." 
             
             <div class="post-content" v-pre>
               <p>主要方便查找静态库和动态库中使用到UIWebView的地方。</p>
+<!-- more -->
 <p>方法一：<br>
-cd 项目根目录<br>
-find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs grep -s UIWebView</p>
+cd 项目根目录</p>
+<pre><code>find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs grep -s UIWebView
+</code></pre>
+<!-- more -->
 <p>方法二：<br>
 复制代码生成文件check.py。<br>
 将文件放置项目根目录，cd到该文件目录，执行python check.py。<br>
