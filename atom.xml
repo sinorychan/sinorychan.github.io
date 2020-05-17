@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sinorychan.github.io</id>
     <title>sinorychan</title>
-    <updated>2020-05-17T02:35:21.397Z</updated>
+    <updated>2020-05-17T02:49:27.589Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sinorychan.github.io"/>
     <link rel="self" href="https://sinorychan.github.io/atom.xml"/>
@@ -11,12 +11,54 @@
     <icon>https://sinorychan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, sinorychan</rights>
     <entry>
-        <title type="html"><![CDATA[你好啊]]></title>
+        <title type="html"><![CDATA[检查iOS项目中是否还有使用UIWebView]]></title>
         <id>https://sinorychan.github.io/post/ni-hao-a/</id>
         <link href="https://sinorychan.github.io/post/ni-hao-a/">
         </link>
         <updated>2020-05-16T10:41:21.000Z</updated>
-        <content type="html"><![CDATA[<p>上都是都是客服都开始非可视电话</p>
+        <content type="html"><![CDATA[<p>主要方便查找静态库和动态库中使用到UIWebView的地方。</p>
+<p>方法一：<br>
+cd 项目根目录<br>
+find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs grep -s UIWebView</p>
+<p>方法二：<br>
+复制代码生成文件check.py。<br>
+将文件放置项目根目录，cd到该文件目录，执行python check.py。<br>
+注意：import subprocess是python3.0以上版本使用，否则用import commands。</p>
+<pre><code>import os
+import subprocess
+
+def check():
+
+for path, dir_list, file_list in os.walk('./'):
+
+    for file_name in file_list:
+
+        # 略过 .DS_Store 文件
+        if file_name.find('.DS_Store') != -1:
+            continue
+
+        # 略过 没有framework  .a 的文件
+        #if path.find('.framework') == -1 and file_name.find('.a') == -1:
+            #continue
+
+        full_path = os.path.join(path, file_name)
+        # print(full_path)
+
+        if full_path.endswith('.h'):
+            continue
+
+        (status, output) = subprocess.getstatusoutput('file %s' % full_path)
+        index = output.find('Mach-O universal binary')
+        if index != -1:
+            # print(full_path)
+
+            (status, output) = subprocess.getstatusoutput('strings %s | grep -ir &quot;uiwebview&quot;' % full_path)
+            if len(output) &gt; 0:
+                print (full_path)
+if __name__ == &quot;__main__&quot;:
+print('Start to check library')
+check()
+</code></pre>
 ]]></content>
     </entry>
     <entry>

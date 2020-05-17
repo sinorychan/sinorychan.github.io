@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" >
 
-<title>你好啊 | sinorychan</title>
+<title>检查iOS项目中是否还有使用UIWebView | sinorychan</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://sinorychan.github.io/favicon.ico?v=1589682919617">
+<link rel="shortcut icon" href="https://sinorychan.github.io/favicon.ico?v=1589683764588">
 <link rel="stylesheet" href="https://sinorychan.github.io/styles/main.css">
 
 
@@ -18,8 +18,10 @@
 
 
 
-    <meta name="description" content="上都是都是客服都开始非可视电话
-" />
+    <meta name="description" content="主要方便查找静态库和动态库中使用到UIWebView的地方。
+方法一：
+cd 项目根目录
+find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs g..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -29,7 +31,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://sinorychan.github.io">
-        <img src="https://sinorychan.github.io/images/avatar.png?v=1589682919617" class="site-logo">
+        <img src="https://sinorychan.github.io/images/avatar.png?v=1589683764588" class="site-logo">
         <h1 class="site-title">sinorychan</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -91,11 +93,53 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">你好啊</h2>
+            <h2 class="post-title">检查iOS项目中是否还有使用UIWebView</h2>
             <div class="post-date">2020-05-16</div>
             
             <div class="post-content" v-pre>
-              <p>上都是都是客服都开始非可视电话</p>
+              <p>主要方便查找静态库和动态库中使用到UIWebView的地方。</p>
+<p>方法一：<br>
+cd 项目根目录<br>
+find . -type f | grep -e &quot;.a&quot; -e &quot;.framework&quot; | xargs grep -s UIWebView</p>
+<p>方法二：<br>
+复制代码生成文件check.py。<br>
+将文件放置项目根目录，cd到该文件目录，执行python check.py。<br>
+注意：import subprocess是python3.0以上版本使用，否则用import commands。</p>
+<pre><code>import os
+import subprocess
+
+def check():
+
+for path, dir_list, file_list in os.walk('./'):
+
+    for file_name in file_list:
+
+        # 略过 .DS_Store 文件
+        if file_name.find('.DS_Store') != -1:
+            continue
+
+        # 略过 没有framework  .a 的文件
+        #if path.find('.framework') == -1 and file_name.find('.a') == -1:
+            #continue
+
+        full_path = os.path.join(path, file_name)
+        # print(full_path)
+
+        if full_path.endswith('.h'):
+            continue
+
+        (status, output) = subprocess.getstatusoutput('file %s' % full_path)
+        index = output.find('Mach-O universal binary')
+        if index != -1:
+            # print(full_path)
+
+            (status, output) = subprocess.getstatusoutput('strings %s | grep -ir &quot;uiwebview&quot;' % full_path)
+            if len(output) &gt; 0:
+                print (full_path)
+if __name__ == &quot;__main__&quot;:
+print('Start to check library')
+check()
+</code></pre>
 
             </div>
             
