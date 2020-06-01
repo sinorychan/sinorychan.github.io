@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sinorychan.github.io</id>
     <title>sinorychan</title>
-    <updated>2020-06-01T04:46:47.122Z</updated>
+    <updated>2020-06-01T04:47:20.508Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sinorychan.github.io"/>
     <link rel="self" href="https://sinorychan.github.io/atom.xml"/>
@@ -10,80 +10,6 @@
     <logo>https://sinorychan.github.io/images/avatar.png</logo>
     <icon>https://sinorychan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, sinorychan</rights>
-    <entry>
-        <title type="html"><![CDATA[关于最近面试复盘]]></title>
-        <id>https://sinorychan.github.io/post/guan-yu-zui-jin-mian-shi-fu-pan/</id>
-        <link href="https://sinorychan.github.io/post/guan-yu-zui-jin-mian-shi-fu-pan/">
-        </link>
-        <updated>2020-06-01T04:08:54.000Z</updated>
-        <content type="html"><![CDATA[<p>特运通<br>
-一面</p>
-<ol>
-<li>如何实现tableviewCell 上的多个定时器功能（提示只用一个定时器）</li>
-<li>push如何实现跳转原生或者是网页</li>
-<li>tableView 的一些性能优化。</li>
-<li>你项目中做了哪些重要的优化。</li>
-<li>web与js 交互 有哪些</li>
-<li>怎么方便替换旧的UIWebview<br>
-二面</li>
-<li>你觉得这些项目中哪些是你曾经遇到比较难的。</li>
-<li>你项目有做过安全方面的处理吗？</li>
-<li>网络请求方式 用过几种？（RPC 等）<br>
-三面</li>
-<li>排序算法有哪些 时间复杂度都是多少。</li>
-<li>如何在1G的内存里处理2G的重复数据。</li>
-<li>说http的一些知识 状态码 tcp/udp  post get请求。</li>
-<li>说说你未来的规划 和最近的规划。</li>
-<li>在你集成三方库的过程中有发现一些什么问题吗？</li>
-</ol>
-<p>闪电快车</p>
-<ol>
-<li>循环引用一般出现在哪里？怎么解决</li>
-<li>为什么 masory UIView animation 等不会造成循环引用）</li>
-<li>说说你今后的规划</li>
-<li>随着滚动 渐变的导航栏如何实现</li>
-<li>Timer定时器释放问题如何解决</li>
-<li>Timer 滚动过程停止 原因</li>
-<li>如何实现线程间依赖关系</li>
-<li>ABC 三个线程执行完再执行 线程D 如何实现</li>
-</ol>
-<p>清奇科技</p>
-<ol>
-<li>a页面要给 b，c ，d ，f 页面传值 不使用通知如何实现</li>
-<li>说说 Runtime，</li>
-<li>项目中有哪些比较难的问题</li>
-</ol>
-<p>晟政</p>
-<ol>
-<li>ScrollView 的实现原理，scrollview添加阴影的时候会出现什么问题？</li>
-<li>如何实现一个外部只读，内部能读写的属性？</li>
-<li>多个网络请求的时候TCP会建立几个？</li>
-<li>有了解过K线图吗？</li>
-</ol>
-<p>朴新教育</p>
-<ol>
-<li>atomic 和noatomic 区别 默认的是哪个？</li>
-<li>网络多线程有哪些实现方法</li>
-<li>如何实现多线程依赖关系</li>
-<li>AFN 为何会要开启一个Runloop</li>
-<li>有读过哪些源码 AFN SDWeb FMDB Alamofire  Kifisher Jsonmodel  ObjectMappe Moya Mjrefresh Masory snapkit  等</li>
-<li>使用过响应式编程吗？ RxSwift  等</li>
-<li>Masory SnapKit 这些是怎么实现点语法的？</li>
-<li>Class Struct enum 有哪些区别 在Swift 中如何选择使用</li>
-<li>wk 如何添加userAgent</li>
-<li>Sqlite 有事务吗？怎么处理事务  Sqlite 如何查询关联查询语句如何写？</li>
-<li>MVC 与MVVM 的区别， MVVM如何实现双向绑定 不使用第三方库</li>
-<li>runtime 的交换方法会造成什么安全隐患</li>
-<li>MJrefresh 如何实现的 如果让你实现 你会怎么实现</li>
-<li>swift 使用怎么监听属性变化 不使用KVO</li>
-<li>说一说组件化是 如是进行组件通信 怎么调用的</li>
-<li>swift 范型使用的好处 举例</li>
-<li>说一说项目中遇到的困难 如何解决的？</li>
-<li>coreData 有用过吗？</li>
-<li>两个子是图如何找到公共的父视图？</li>
-</ol>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Swift- 多线程编程 Operation]]></title>
         <id>https://sinorychan.github.io/post/swift-duo-xian-cheng-bian-cheng-operation/</id>
