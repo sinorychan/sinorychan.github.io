@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sinorychan.github.io</id>
     <title>sinorychan</title>
-    <updated>2020-05-17T07:37:29.058Z</updated>
+    <updated>2020-06-01T04:46:47.122Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sinorychan.github.io"/>
     <link rel="self" href="https://sinorychan.github.io/atom.xml"/>
@@ -10,6 +10,167 @@
     <logo>https://sinorychan.github.io/images/avatar.png</logo>
     <icon>https://sinorychan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, sinorychan</rights>
+    <entry>
+        <title type="html"><![CDATA[关于最近面试复盘]]></title>
+        <id>https://sinorychan.github.io/post/guan-yu-zui-jin-mian-shi-fu-pan/</id>
+        <link href="https://sinorychan.github.io/post/guan-yu-zui-jin-mian-shi-fu-pan/">
+        </link>
+        <updated>2020-06-01T04:08:54.000Z</updated>
+        <content type="html"><![CDATA[<p>特运通<br>
+一面</p>
+<ol>
+<li>如何实现tableviewCell 上的多个定时器功能（提示只用一个定时器）</li>
+<li>push如何实现跳转原生或者是网页</li>
+<li>tableView 的一些性能优化。</li>
+<li>你项目中做了哪些重要的优化。</li>
+<li>web与js 交互 有哪些</li>
+<li>怎么方便替换旧的UIWebview<br>
+二面</li>
+<li>你觉得这些项目中哪些是你曾经遇到比较难的。</li>
+<li>你项目有做过安全方面的处理吗？</li>
+<li>网络请求方式 用过几种？（RPC 等）<br>
+三面</li>
+<li>排序算法有哪些 时间复杂度都是多少。</li>
+<li>如何在1G的内存里处理2G的重复数据。</li>
+<li>说http的一些知识 状态码 tcp/udp  post get请求。</li>
+<li>说说你未来的规划 和最近的规划。</li>
+<li>在你集成三方库的过程中有发现一些什么问题吗？</li>
+</ol>
+<p>闪电快车</p>
+<ol>
+<li>循环引用一般出现在哪里？怎么解决</li>
+<li>为什么 masory UIView animation 等不会造成循环引用）</li>
+<li>说说你今后的规划</li>
+<li>随着滚动 渐变的导航栏如何实现</li>
+<li>Timer定时器释放问题如何解决</li>
+<li>Timer 滚动过程停止 原因</li>
+<li>如何实现线程间依赖关系</li>
+<li>ABC 三个线程执行完再执行 线程D 如何实现</li>
+</ol>
+<p>清奇科技</p>
+<ol>
+<li>a页面要给 b，c ，d ，f 页面传值 不使用通知如何实现</li>
+<li>说说 Runtime，</li>
+<li>项目中有哪些比较难的问题</li>
+</ol>
+<p>晟政</p>
+<ol>
+<li>ScrollView 的实现原理，scrollview添加阴影的时候会出现什么问题？</li>
+<li>如何实现一个外部只读，内部能读写的属性？</li>
+<li>多个网络请求的时候TCP会建立几个？</li>
+<li>有了解过K线图吗？</li>
+</ol>
+<p>朴新教育</p>
+<ol>
+<li>atomic 和noatomic 区别 默认的是哪个？</li>
+<li>网络多线程有哪些实现方法</li>
+<li>如何实现多线程依赖关系</li>
+<li>AFN 为何会要开启一个Runloop</li>
+<li>有读过哪些源码 AFN SDWeb FMDB Alamofire  Kifisher Jsonmodel  ObjectMappe Moya Mjrefresh Masory snapkit  等</li>
+<li>使用过响应式编程吗？ RxSwift  等</li>
+<li>Masory SnapKit 这些是怎么实现点语法的？</li>
+<li>Class Struct enum 有哪些区别 在Swift 中如何选择使用</li>
+<li>wk 如何添加userAgent</li>
+<li>Sqlite 有事务吗？怎么处理事务  Sqlite 如何查询关联查询语句如何写？</li>
+<li>MVC 与MVVM 的区别， MVVM如何实现双向绑定 不使用第三方库</li>
+<li>runtime 的交换方法会造成什么安全隐患</li>
+<li>MJrefresh 如何实现的 如果让你实现 你会怎么实现</li>
+<li>swift 使用怎么监听属性变化 不使用KVO</li>
+<li>说一说组件化是 如是进行组件通信 怎么调用的</li>
+<li>swift 范型使用的好处 举例</li>
+<li>说一说项目中遇到的困难 如何解决的？</li>
+<li>coreData 有用过吗？</li>
+<li>两个子是图如何找到公共的父视图？</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Swift- 多线程编程 Operation]]></title>
+        <id>https://sinorychan.github.io/post/swift-duo-xian-cheng-bian-cheng-operation/</id>
+        <link href="https://sinorychan.github.io/post/swift-duo-xian-cheng-bian-cheng-operation/">
+        </link>
+        <updated>2020-05-17T14:38:16.000Z</updated>
+        <content type="html"><![CDATA[<p>一、NSOperation子类</p>
+<p>NSOperation是一个抽象类,并不具备封装操作的能力,必须使用它的子类</p>
+<p>1、NSInvocationOperation(Swift不支持)</p>
+<p>默认是不会开启线程的,只会在当前的线程中执行操作,可以通过Operation和OperationQueue实现多线程</p>
+<p>2、BlockOperation：</p>
+<p>只要BlockOperation封装的操作数 &gt; 1,就会异步执行操作,但是不会无限制的创建线程</p>
+<pre><code>let blockOp = BlockOperation()
+blockOp.queuePriority = .veryHigh //设置优先级
+blockOp.addExecutionBlock {
+    print(&quot;执行了 blockOp1 \(Thread.current)&quot;)
+}
+blockOp.addExecutionBlock {
+    print(&quot;执行了 blockOp2 \(Thread.current)&quot;)
+}
+blockOp.start() // 开始执行
+//        blockOp.cancel()// 取消
+</code></pre>
+<p>二、NSOperationQueue</p>
+<p>1、创建队列</p>
+<p>获取主队列以及添加操作到队列，主队列是串行队列,无论是否设置最大并行数量都是在当前线程执行，不会创建新的线程<br>
+let queue = OperationQueue.main<br>
+queue.addOperation {}</p>
+<p>同时具备串行和并发的功能,默认情况下是并发的,可以手动设置为串行队列,通过设置最大并发数属性来更改</p>
+<pre><code>let queue = OperationQueue()
+queue.maxConcurrentOperationCount = 1
+queue.addOperation {
+ for _ in 0...50000{
+    print(&quot;OperationQueue1执行了&quot;,Thread.current)
+     }
+}
+//addOperation已经在内部执行了start方法了
+</code></pre>
+<p>2、最大并发数</p>
+<p>1、将最大操作数的值设置为1,可以实现任务的串行效果,但是要注意的是,并不是只开一条子线程(通常会开两条子线程,循环回收复用)</p>
+<p>2、最大并发数6以内，不要开太多，因为虽然任务是在子线程进行处理的，但是cpu处理这些过多的子线程可能会影响UI，让UI卡顿。</p>
+<pre><code>queue.maxConcurrentOperationCount=2;
+</code></pre>
+<p>3、队列的取消</p>
+<p>1、取消队列中的所有任务,除了正在执行的任务,一旦被取消,就不能回复之前的操作。</p>
+<p>2、当前正在处于执行状态的任务是不能够取消的,只能取消等待的任务</p>
+<pre><code>queue.cancelAllOperations()
+</code></pre>
+<p>4、队列的挂起和恢复</p>
+<p>当前正在处于执行状态的任务是不能够暂停的,只能暂停等待的任务</p>
+<pre><code>queue.isSuspended = true    //暂停队列
+queue.isSuspended = false  //恢复队列
+</code></pre>
+<p>5、等待Options完成</p>
+<p>如果需要在当前线程中处理operation完成后的结果,可以使用NSOperation的waitUntilFinished方法阻塞当前线程，等待operation完成</p>
+<pre><code>// 会阻塞当前线程，等到某个operation执行完毕  
+[operation waitUntilFinished];
+
+使用NSOperationQueue的waitUntilAllOperationsAreFinished方法
+
+// 阻塞当前线程，等待queue的所有操作执行完毕  
+[queue waitUntilAllOperationsAreFinished];
+</code></pre>
+<p>6、添加NSOperation的依赖对象</p>
+<p>当某个NSOperation对象依赖于其它NSOperation对象的完成时，就可以通过addDependency方法添加一个或者多个依赖的对象，只有所有依赖的对象都已经完成操作，当前NSOperation对象才会开始执行操作。另外，通过removeDependency方法来删除依赖对象。</p>
+<pre><code>//设置依赖关系
+let blockOpe1 = BlockOperation()
+blockOpe1.addExecutionBlock {
+print(&quot;blockOpe1执行了&quot;)
+}
+let blockOpe2 = BlockOperation()
+blockOpe2.addExecutionBlock {
+print(&quot;blockOpe2执行了&quot;)
+}
+blockOpe1.addDependency(blockOpe2)
+queue.addOperation(blockOpe1)
+queue.addOperation(blockOpe2)
+</code></pre>
+<p>可以看出，先执行blockOpe2，再执行blockOpe1</p>
+<p>7、修改Operations的执行顺序<br>
+默认所有operation都拥有“普通”优先级,不过可以通过setQueuePriority:方法来提升或降低operation对象的优先级。</p>
+<pre><code>let blockOpe = BlockOperation()
+blockOpe.queuePriority = .low
+queue.addOperation(blockOpe)  
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ Run custom shell script '[CP]Copy Pods Resources' 错误 ]]></title>
         <id>https://sinorychan.github.io/post/ios-bian-yi-cuo-wu-zheng-li/</id>
@@ -82,38 +243,6 @@ if __name__ == &quot;__main__&quot;:
 print('Start to check library')
 check()
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://sinorychan.github.io/post/hello-gridea/</id>
-        <link href="https://sinorychan.github.io/post/hello-gridea/">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
 ]]></content>
     </entry>
 </feed>

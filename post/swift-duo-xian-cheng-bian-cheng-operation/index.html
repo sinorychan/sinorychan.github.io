@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Swift- 多线程编程 Operation | sinorychan</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://sinorychan.github.io/favicon.ico?v=1590986672792">
+<link rel="stylesheet" href="https://sinorychan.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="一、NSOperation子类
+NSOperation是一个抽象类,并不具备封装操作的能力,必须使用它的子类
+1、NSInvocationOperation(Swift不支持)
+默认是不会开启线程的,只会在当前的线程中执行操作,可以通过Op..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://sinorychan.github.io">
+        <img src="https://sinorychan.github.io/images/avatar.png?v=1590986672792" class="site-logo">
+        <h1 class="site-title">sinorychan</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+       | <a class="rss" href="https://sinorychan.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Swift- 多线程编程 Operation</h2>
+            <div class="post-date">2020-05-17</div>
+            
+            <div class="post-content" v-pre>
+              <p>一、NSOperation子类</p>
+<p>NSOperation是一个抽象类,并不具备封装操作的能力,必须使用它的子类</p>
+<p>1、NSInvocationOperation(Swift不支持)</p>
+<p>默认是不会开启线程的,只会在当前的线程中执行操作,可以通过Operation和OperationQueue实现多线程</p>
+<p>2、BlockOperation：</p>
+<p>只要BlockOperation封装的操作数 &gt; 1,就会异步执行操作,但是不会无限制的创建线程</p>
+<pre><code>let blockOp = BlockOperation()
+blockOp.queuePriority = .veryHigh //设置优先级
+blockOp.addExecutionBlock {
+    print(&quot;执行了 blockOp1 \(Thread.current)&quot;)
+}
+blockOp.addExecutionBlock {
+    print(&quot;执行了 blockOp2 \(Thread.current)&quot;)
+}
+blockOp.start() // 开始执行
+//        blockOp.cancel()// 取消
+</code></pre>
+<p>二、NSOperationQueue</p>
+<p>1、创建队列</p>
+<p>获取主队列以及添加操作到队列，主队列是串行队列,无论是否设置最大并行数量都是在当前线程执行，不会创建新的线程<br>
+let queue = OperationQueue.main<br>
+queue.addOperation {}</p>
+<p>同时具备串行和并发的功能,默认情况下是并发的,可以手动设置为串行队列,通过设置最大并发数属性来更改</p>
+<pre><code>let queue = OperationQueue()
+queue.maxConcurrentOperationCount = 1
+queue.addOperation {
+ for _ in 0...50000{
+    print(&quot;OperationQueue1执行了&quot;,Thread.current)
+     }
+}
+//addOperation已经在内部执行了start方法了
+</code></pre>
+<p>2、最大并发数</p>
+<p>1、将最大操作数的值设置为1,可以实现任务的串行效果,但是要注意的是,并不是只开一条子线程(通常会开两条子线程,循环回收复用)</p>
+<p>2、最大并发数6以内，不要开太多，因为虽然任务是在子线程进行处理的，但是cpu处理这些过多的子线程可能会影响UI，让UI卡顿。</p>
+<pre><code>queue.maxConcurrentOperationCount=2;
+</code></pre>
+<p>3、队列的取消</p>
+<p>1、取消队列中的所有任务,除了正在执行的任务,一旦被取消,就不能回复之前的操作。</p>
+<p>2、当前正在处于执行状态的任务是不能够取消的,只能取消等待的任务</p>
+<pre><code>queue.cancelAllOperations()
+</code></pre>
+<p>4、队列的挂起和恢复</p>
+<p>当前正在处于执行状态的任务是不能够暂停的,只能暂停等待的任务</p>
+<pre><code>queue.isSuspended = true    //暂停队列
+queue.isSuspended = false  //恢复队列
+</code></pre>
+<p>5、等待Options完成</p>
+<p>如果需要在当前线程中处理operation完成后的结果,可以使用NSOperation的waitUntilFinished方法阻塞当前线程，等待operation完成</p>
+<pre><code>// 会阻塞当前线程，等到某个operation执行完毕  
+[operation waitUntilFinished];
+
+使用NSOperationQueue的waitUntilAllOperationsAreFinished方法
+
+// 阻塞当前线程，等待queue的所有操作执行完毕  
+[queue waitUntilAllOperationsAreFinished];
+</code></pre>
+<p>6、添加NSOperation的依赖对象</p>
+<p>当某个NSOperation对象依赖于其它NSOperation对象的完成时，就可以通过addDependency方法添加一个或者多个依赖的对象，只有所有依赖的对象都已经完成操作，当前NSOperation对象才会开始执行操作。另外，通过removeDependency方法来删除依赖对象。</p>
+<pre><code>//设置依赖关系
+let blockOpe1 = BlockOperation()
+blockOpe1.addExecutionBlock {
+print(&quot;blockOpe1执行了&quot;)
+}
+let blockOpe2 = BlockOperation()
+blockOpe2.addExecutionBlock {
+print(&quot;blockOpe2执行了&quot;)
+}
+blockOpe1.addDependency(blockOpe2)
+queue.addOperation(blockOpe1)
+queue.addOperation(blockOpe2)
+</code></pre>
+<p>可以看出，先执行blockOpe2，再执行blockOpe1</p>
+<p>7、修改Operations的执行顺序<br>
+默认所有operation都拥有“普通”优先级,不过可以通过setQueuePriority:方法来提升或降低operation对象的优先级。</p>
+<pre><code>let blockOpe = BlockOperation()
+blockOpe.queuePriority = .low
+queue.addOperation(blockOpe)  
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://sinorychan.github.io/post/ios-bian-yi-cuo-wu-zheng-li/">
+                  <h3 class="post-title">
+                     Run custom shell script &#39;[CP]Copy Pods Resources&#39; 错误 
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>
