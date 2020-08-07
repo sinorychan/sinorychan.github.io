@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | sinorychan</title>
+<title>h5 调用app相册问题 | sinorychan</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,10 +18,8 @@
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-" />
+    <meta name="description" content="问题（一）
+使用模态弹出一个ViewController ，并在这个ViewController上加载H5 网页，H5网页上可以调起来了手机系统的相册，选取照片。问题在于当你在弹出Alert 选择相机 或相册的时候，点击会将整个界面返回到第..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -93,16 +91,26 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">h5 调用app相册问题</h2>
+            <div class="post-date">2020-08-07</div>
             
             <div class="post-content" v-pre>
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
+              <p>问题（一）<br>
+使用模态弹出一个ViewController ，并在这个ViewController上加载H5 网页，H5网页上可以调起来了手机系统的相册，选取照片。问题在于当你在弹出Alert 选择相机 或相册的时候，点击会将整个界面返回到第一个模态的ViewController 上。感谢天狐博主的奉献。讲解的很清晰。模态UIViewController中WebView的H5弹出Camera/ImagePicker。</p>
+<p>问题（二）<br>
+解决了问题一 之后（我是改用push 方法 解决的问题一），此时h5调用相册，弹出Alert 选择相机或相册 点击选择相机或相册 ，可以正常调用系统的相机或相册，选择完照片完成之后，注意 此时的相册界面diss的时候 ，会调用你ViewController的ViewWillAppear 方法，所以，不要在这里调用WebView 的reload 方法，否则 会导致你所选取的照片一闪而逝。原因就是刷新之后记录在控件上的图片，被重置为空</p>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://sinorychan.github.io/post/arc-xia-yin-yong-ji-shu-de-da-yin/">
+                  <h3 class="post-title">
+                    ARC 下引用计数的打印
+                  </h3>
+                </a>
+              </div>
             
 
             

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | sinorychan</title>
+<title>ARC 下引用计数的打印 | sinorychan</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,10 +18,8 @@
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-" />
+    <meta name="description" content="在管理内存的时候经常需要打印对象的引用计数,来检测对象是否发生内存泄漏，但是在ARC下是禁止查看Objective-C对象的引用计数的，所以导致在ARC下无法打印对象的引用计数；
+但是Objective-C 对象可以转化为CoreFound..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -93,16 +91,28 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">ARC 下引用计数的打印</h2>
+            <div class="post-date">2020-06-22</div>
             
             <div class="post-content" v-pre>
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
+              <p>在管理内存的时候经常需要打印对象的引用计数,来检测对象是否发生内存泄漏，但是在ARC下是禁止查看Objective-C对象的引用计数的，所以导致在ARC下无法打印对象的引用计数；</p>
+<p>但是Objective-C 对象可以转化为CoreFoundation对象，所以可以使用如下代码在ARC下打印对象的引用计数；</p>
+<pre><code>id  obj =[[NSObject alloc ]init];
+NSLog(@&quot;retain  count = %ld\n&quot;,CFGetRetainCount((__bridge  CFTypeRef)(obj)));
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://sinorychan.github.io/post-images/1592804056636.png" alt="" loading="lazy"></figure>
 
             </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://sinorychan.github.io/post/cabasicanimation-de-dai-li-de-keng/">
+                  <h3 class="post-title">
+                    CABasicAnimation的代理的坑
+                  </h3>
+                </a>
+              </div>
             
 
             

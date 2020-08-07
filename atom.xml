@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sinorychan.github.io</id>
     <title>sinorychan</title>
-    <updated>2020-06-01T04:47:47.224Z</updated>
+    <updated>2020-08-07T08:30:07.025Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sinorychan.github.io"/>
     <link rel="self" href="https://sinorychan.github.io/atom.xml"/>
@@ -10,6 +10,104 @@
     <logo>https://sinorychan.github.io/images/avatar.png</logo>
     <icon>https://sinorychan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, sinorychan</rights>
+    <entry>
+        <title type="html"><![CDATA[h5 调用app相册问题]]></title>
+        <id>https://sinorychan.github.io/post/guan-yu-jia-zai-h5-wang-ye-shi-yong-h5-diao-yong-app-shou-ji-xiang-ce-de-wen-ti/</id>
+        <link href="https://sinorychan.github.io/post/guan-yu-jia-zai-h5-wang-ye-shi-yong-h5-diao-yong-app-shou-ji-xiang-ce-de-wen-ti/">
+        </link>
+        <updated>2020-08-07T08:25:07.000Z</updated>
+        <content type="html"><![CDATA[<p>问题（一）<br>
+使用模态弹出一个ViewController ，并在这个ViewController上加载H5 网页，H5网页上可以调起来了手机系统的相册，选取照片。问题在于当你在弹出Alert 选择相机 或相册的时候，点击会将整个界面返回到第一个模态的ViewController 上。感谢天狐博主的奉献。讲解的很清晰。模态UIViewController中WebView的H5弹出Camera/ImagePicker。</p>
+<p>问题（二）<br>
+解决了问题一 之后（我是改用push 方法 解决的问题一），此时h5调用相册，弹出Alert 选择相机或相册 点击选择相机或相册 ，可以正常调用系统的相机或相册，选择完照片完成之后，注意 此时的相册界面diss的时候 ，会调用你ViewController的ViewWillAppear 方法，所以，不要在这里调用WebView 的reload 方法，否则 会导致你所选取的照片一闪而逝。原因就是刷新之后记录在控件上的图片，被重置为空</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ARC 下引用计数的打印]]></title>
+        <id>https://sinorychan.github.io/post/arc-xia-yin-yong-ji-shu-de-da-yin/</id>
+        <link href="https://sinorychan.github.io/post/arc-xia-yin-yong-ji-shu-de-da-yin/">
+        </link>
+        <updated>2020-06-22T05:32:06.000Z</updated>
+        <content type="html"><![CDATA[<p>在管理内存的时候经常需要打印对象的引用计数,来检测对象是否发生内存泄漏，但是在ARC下是禁止查看Objective-C对象的引用计数的，所以导致在ARC下无法打印对象的引用计数；</p>
+<p>但是Objective-C 对象可以转化为CoreFoundation对象，所以可以使用如下代码在ARC下打印对象的引用计数；</p>
+<pre><code>id  obj =[[NSObject alloc ]init];
+NSLog(@&quot;retain  count = %ld\n&quot;,CFGetRetainCount((__bridge  CFTypeRef)(obj)));
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://sinorychan.github.io/post-images/1592804056636.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CABasicAnimation的代理的坑]]></title>
+        <id>https://sinorychan.github.io/post/cabasicanimation-de-dai-li-de-keng/</id>
+        <link href="https://sinorychan.github.io/post/cabasicanimation-de-dai-li-de-keng/">
+        </link>
+        <updated>2020-06-02T12:06:30.000Z</updated>
+        <content type="html"><![CDATA[<p>在自定义动画的时候，CABasicAnimation用的还算的蛮多的。</p>
+<p>在此先介绍一下CABasicAnimation怎么使用。</p>
+<pre><code>属性介绍
+属性	说明
+duration	动画执行的时长
+repeatCount	重复的次数。一直重复设置为 HUGE_VALF
+repeatDuration	设置动画的时间。在该时间内动画一直执行，不计次数
+beginTime	指定动画开始的时间。可以通过(当前时间+秒数)来实现延迟动画
+timingFunction	设置动画的速度的变化
+autoreverses	动画结束时是否执行逆动画
+fromValue	所改变属性的起始值
+toValue	所改变属性的结束值
+byValue	所改变属性相同起始值的改变量
+</code></pre>
+<p>怎么使用就不用说了，在这里主要说一下CABasicAnimation的代理使用方法。<br>
+有同学要问了，怎么一个代理还要注意，我只说一点，CABasicAnimation的代理是strong类型<br>
+这里就要看看了<br>
+animation 是添加到layer上的，layer属于view，view属于control，animation又持有control，所以使用代理的话, 必然出现循环引用。</p>
+<p>废话不多说，下面是解决方法。</p>
+<p>第一种：<br>
+第一种是取巧的方法，不用代理了，既然动画是自己写的，动画时长也是知道的，干脆直接使用</p>
+<pre><code>[self performSelector:@selector(animationDidStop) withObject:self afterDelay:time];
+</code></pre>
+<p>在time秒之后调用，模仿动画完成之后调用。<br>
+这样就有个问题，万一由于某种原因导致time秒「前后」执行完了，逻辑就会出现瑕疵，不够完美。</p>
+<p>第二种：<br>
+第二种方法是创建一个新的类，假设是JRAnimDelegate;</p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+@class JRAnimDelegatel;
+@protocol JRAnimDelegateDelegate &lt;NSObject&gt;
+
+@optional
+     - (void)animationDidStop;
+
+@end
+
+@interface JRAnimDelegate : NSObject&lt;CAAnimationDelegate&gt;
+
+@property(nonatomic, assign) id&lt;JRAnimDelegateDelegate&gt; delegate;
+
+@end
+
+.m
+
+#import &quot;JRAnimDelegate.h&quot;
+
+@implementation JRAnimDelegate
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    if ([self.delegate respondsToSelector:@selector(animationDidStop)]) {
+        [self.delegate animationDidStop];
+    }
+}
+
+@end
+然后使用时
+JRAnimDelegate *animDelegate = [[JRAnimDelegate alloc] init];
+
+animDelegate.delegate = self;
+animation.delegate = animDelegate;
+</code></pre>
+<p>转化之后，会打破循环引用。在新的类中将代理转回来，这样也可以使用，这样虽然会使逻辑变的复杂，但是能保证一定是动画执行完成之后调用</p>
+<p>我用的就是第二种</p>
+<p>两种方法我都测试过，都可以用，具体用哪种 ，每个人都有自己的理解和使用的场景。诸君自便</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Swift- 多线程编程 Operation]]></title>
         <id>https://sinorychan.github.io/post/swift-duo-xian-cheng-bian-cheng-operation/</id>
